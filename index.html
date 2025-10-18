@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Комплект наглядного материала | Ирина Гаевская</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f9ff;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h1 {
+      color: #2a5c82;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    h2 {
+      color: #2a5c82;
+      margin: 20px 0 12px;
+      font-size: 20px;
+    }
+    textarea, select, input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      background: #fff;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #2a5c82;
+    }
+    .checkbox-group, .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0f8ff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .checkbox-item input {
+      margin: 0;
+    }
+    .btn {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background-color: #357abd;
+    }
+    .btn-secondary {
+      background-color: #6ac078;
+    }
+    .btn-secondary:hover {
+      background-color: #57a965;
+    }
+    #promptOutput {
+      width: 100%;
+      min-height: 150px;
+      padding: 16px;
+      background: #f0f8ff;
+      border: 2px dashed #2a5c82;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      margin-top: 20px;
+      font-family: monospace;
+      font-size: 15px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #777;
+      font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🖼 Комплект наглядного материала для урока</h1>
+    <p style="text-align:center; color:#666; margin-bottom:20px;">
+      Вставьте план-конспект — получите промпт для генерации HTML-страницы со ВСЕМ необходимым!
+    </p>
+
+    <label for="lessonPlan">📝 Вставьте фрагмент плана-конспекта урока:</label>
+    <textarea id="lessonPlan" placeholder="Например: Тема — «Решение задач на нахождение третьего слагаемого». Учащиеся учатся анализировать задачу, выделять известные и неизвестные данные..."></textarea>
+
+    <label for="grade">📚 Класс:</label>
+    <select id="grade">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+    </select>
+
+    <h2>🔤 Язык материала:</h2>
+    <select id="language">
+      <option value="русский">Русский</option>
+      <option value="беларуская мова">Беларуская мова</option>
+    </select>
+
+    <h2>✅ Какие материалы включить? (выберите всё, что нужно):</h2>
+    <div class="checkbox-group" id="materials">
+      <label class="checkbox-item"><input type="checkbox" value="Опорная схема / кластер" checked> Опорная схема</label>
+      <label class="checkbox-item"><input type="checkbox" value="Алгоритм / пошаговая инструкция" checked> Алгоритм</label>
+      <label class="checkbox-item"><input type="checkbox" value="Карточки-подсказки"> Карточки</label>
+      <label class="checkbox-item"><input type="checkbox" value="Плакат / инфопостер"> Плакат</label>
+      <label class="checkbox-item"><input type="checkbox" value="Таблица / сравнительная схема"> Таблица</label>
+      <label class="checkbox-item"><input type="checkbox" value="Визуальная модель"> Визуальная модель</label>
+      <label class="checkbox-item"><input type="checkbox" value="Игровое поле / тренажёр"> Игровое поле</label>
+    </div>
+
+    <h2>✨ Дополнительно:</h2>
+    <div class="checkbox-group" id="features">
+      <label class="checkbox-item"><input type="checkbox" value="Инклюзивный формат (крупный шрифт, контраст)"> Инклюзивный формат</label>
+      <label class="checkbox-item"><input type="checkbox" value="Связь с жизнью / краеведение"> Связь с жизнью</label>
+      <label class="checkbox-item"><input type="checkbox" value="Подходит для печати на A4" checked> Печать на A4</label>
+      <label class="checkbox-item"><input type="checkbox" value="Подходит для печати на A3"> Печать на A3</label>
+    </div>
+
+    <h2>📤 Формат результата:</h2>
+    <div class="radio-group">
+      <label class="checkbox-item">
+        <input type="radio" name="outputType" value="html" checked> Готовая HTML-страница со всем комплектом
+      </label>
+      <label class="checkbox-item">
+        <input type="radio" name="outputType" value="description"> Только текстовое описание
+      </label>
+    </div>
+
+    <button class="btn" onclick="generatePrompt()">Сгенерировать промпт</button>
+
+    <div id="outputSection" style="display:none;">
+      <h2>📄 Ваш промпт:</h2>
+      <div id="promptOutput"></div>
+      <br>
+      <button class="btn" onclick="copyPrompt()">Копировать</button>
+      <button class="btn btn-secondary" onclick="openInQwen()">Открыть в Qwen</button>
+    </div>
+
+    <footer>
+      © Ирина Гаевская, учитель начальных классов, Беларусь
+    </footer>
+  </div>
+
+  <script>
+    function getCheckedValues(containerId) {
+      const checkboxes = document.querySelectorAll(`#${containerId} input:checked`);
+      return Array.from(checkboxes).map(cb => cb.value);
+    }
+
+    function generatePrompt() {
+      const lessonPlan = document.getElementById('lessonPlan').value.trim();
+      const grade = document.getElementById('grade').value;
+      const language = document.getElementById('language').value;
+      const materials = getCheckedValues('materials');
+      const features = getCheckedValues('features');
+      const outputType = document.querySelector('input[name="outputType"]:checked').value;
+
+      if (!lessonPlan) {
+        alert('Пожалуйста, вставьте фрагмент плана-конспекта.');
+        return;
+      }
+
+      if (materials.length === 0) {
+        alert('Выберите хотя бы один тип наглядного материала.');
+        return;
+      }
+
+      let prompt = '';
+
+      if (outputType === 'html') {
+        // Стиль по возрасту
+        let styleDescription = '';
+        const g = parseInt(grade);
+        if (g >= 1 && g <= 4) {
+          styleDescription = 'яркий, игровой: крупный шрифт (не менее 20px), много emoji (например, 🌟📚✏️🎉), закруглённые цветные блоки, пастельные фоны, минимум сплошного текста';
+        } else if (g >= 5 && g <= 7) {
+          styleDescription = 'чёткий и структурированный: шрифт 16–18px, акцент на логике и понятности, умеренное использование цвета';
+        } else {
+          styleDescription = 'лаконичный и академический: минимум декора, строгая типографика, чёрно-белая палитра с одним акцентным цветом';
+        }
+
+        prompt = `Ты — учитель Республики Беларусь и веб-дизайнер. `;
+        prompt += `На основе следующего фрагмента урока:\n«${lessonPlan}»\n`;
+        prompt += `создай **единый HTML-файл** с **полным комплектом наглядного материала** для урока в ${grade} классе.\n\n`;
+
+        prompt += `Включи следующие материалы:\n– ${materials.join('\n– ')}\n\n`;
+
+        prompt += `Требования:\n`;
+        prompt += `– Весь материал — в одном HTML-документе, без внешних зависимостей (CSS внутри <style>);\n`;
+        prompt += `– Стиль оформления: ${styleDescription};\n`;
+
+        if (features.length > 0) {
+          prompt += `– Учти: ${features.join(', ')};\n`;
+        }
+
+        prompt += `– Каждый тип материала — в отдельном чётко обозначенном блоке с заголовком;\n`;
+        prompt += `– Язык текста на всех материалах — ${language};\n`;
+        prompt += `– Страница должна корректно печататься (Ctrl+P) на A4 или A3;\n`;
+        prompt += `– Не используй JavaScript — только HTML + CSS;\n`;
+        prompt += `– НЕ ОБЪЯСНЯЙ — сразу выдай только код.`;
+      } else {
+        // Режим описания
+        prompt = `Ты — учитель Республики Беларусь. `;
+        prompt += `На основе фрагмента урока:\n«${lessonPlan}»\n`;
+        prompt += `опиши полный комплект наглядного материала для ${grade} класса, включая:\n`;
+        prompt += `– ${materials.join('\n– ')}\n\n`;
+
+        if (features.length > 0) {
+          prompt += `Учти: ${features.join(', ')}.\n`;
+        }
+
+        prompt += `Язык описания — ${language}.`;
+      }
+
+      document.getElementById('promptOutput').textContent = prompt;
+      document.getElementById('outputSection').style.display = 'block';
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('promptOutput').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Промпт скопирован!');
+      });
+    }
+
+    function openInQwen() {
+      const text = encodeURIComponent(document.getElementById('promptOutput').textContent);
+      window.open(`https://chat.qwen.ai/?q=${text}`, '_blank');
+    }
+  </script>
+</body>
+</html>
