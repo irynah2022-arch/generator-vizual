@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Помощник учителя Беларуси — генератор промптов для наглядного материала к уроку</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Помощник учителя Беларуси — генератор наглядного материала</title>
   
-  <!-- Google tag (gtag.js) — ИСПРАВЛЕНО: без пробелов -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RVNV79RDG  "></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RVNV79RDG"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -19,192 +19,322 @@
       --primary: #2a5c82;
       --accent-blue: #4a90e2;
       --accent-green: #6ac078;
-      --light-bg: #f0f9ff;
+      --accent-orange: #ff9e44;
+      --accent-purple: #9b59b6;
+      --light-bg: #f5f7fa;
       --white: #fff;
-      --dark: #333;
+      --dark: #2c3e50;
+      --text: #34495e;
     }
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
     body {
-      background-color: var(--light-bg);
-      color: var(--dark);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-attachment: fixed;
+      color: var(--text);
       line-height: 1.6;
-      padding: 20px 10px 60px;
-      position: relative;
+      padding: 10px;
+      min-height: 100vh;
     }
     .top-bar {
+      max-width: 1200px;
+      margin: 0 auto 20px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding: 0 10px;
+      flex-direction: column;
+      gap: 15px;
+      padding: 15px;
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      border-radius: 12px;
     }
     .author-signature {
-      font-style: normal;
       color: #fff;
-      font-size: 15px;
+      font-size: 14px;
       background: linear-gradient(to right, #0033A0, #CE1126);
       padding: 10px 14px;
       border-radius: 8px;
       font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       text-align: center;
-      white-space: normal;
       line-height: 1.3;
-      max-width: 220px;
     }
     .action-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      justify-content: flex-end;
+      gap: 6px;
+      justify-content: center;
     }
     .action-buttons button {
       padding: 6px 10px;
-      font-size: 13px;
-      margin: 0;
+      font-size: 12px;
       border-radius: 6px;
-      white-space: nowrap;
-      height: auto;
-      min-width: 100px;
       border: none;
-      color: white !important;
-      font-weight: bold;
+      color: white;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .action-buttons button:active {
+      transform: scale(0.95);
     }
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       background: var(--white);
       padding: 25px;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
     }
     h1 {
       color: var(--primary);
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 24px;
+      line-height: 1.3;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 15px;
     }
     h2 {
       color: var(--primary);
       margin: 20px 0 12px;
-      font-size: 20px;
+      font-size: 18px;
+      border-bottom: 3px solid var(--accent-blue);
+      padding-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    textarea, select, input[type="text"] {
-      width: 100%;
-      padding: 12px;
+    .form-group {
       margin-bottom: 16px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      font-size: 16px;
-      background: #fff;
-    }
-    textarea {
-      min-height: 120px;
-      resize: vertical;
     }
     label {
       display: block;
       margin-bottom: 6px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--primary);
+      font-size: 14px;
     }
-    .checkbox-group, .radio-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 16px;
+    textarea, select, input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      background: #fff;
+      font-family: inherit;
+      transition: border-color 0.3s;
     }
-    .checkbox-item, .radio-item {
+    textarea:focus, select:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+    }
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .setting-card {
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      border: 2px solid #e3e8ee;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .setting-card h3 {
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-size: 15px;
       display: flex;
       align-items: center;
       gap: 6px;
-      background: #f0f8ff;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      white-space: nowrap;
     }
-    .checkbox-item input, .radio-item input {
-      margin: 0;
-    }
-    .button-group {
+    .option-group {
       display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: #f0f8ff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+    .option-item:active {
+      background: #e3f2fd;
+      transform: scale(0.98);
+    }
+    .option-item input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-blue);
+    }
+    
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .material-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      font-size: 14px;
+    }
+    .material-item:active {
+      transform: scale(0.98);
+      border-color: var(--accent-blue);
+    }
+    .material-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-blue);
+    }
+    .material-item input[type="text"] {
+      margin: 0;
+      flex: 1;
+      min-width: 100px;
+      padding: 6px;
+      font-size: 13px;
+    }
+    
+    .button-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 25px;
     }
     .button-group button {
-      flex: 1;
-      min-width: 150px;
-      padding: 12px 15px;
-      font-size: 16px;
+      padding: 14px 18px;
+      font-size: 15px;
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
-      white-space: nowrap;
+      border: none;
+      color: white;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      line-height: 1.3;
+    }
+    .button-group button:active:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .button-group button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
     #generateBtn {
-      background-color: var(--accent-blue);
-      color: white;
-      border: none;
-    }
-    #generateBtn:hover {
-      background-color: #357abd;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
     #copyBtn {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-    }
-    #copyBtn:hover {
-      background-color: #3d8b40;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     }
     #openQwenBtn {
-      background-color: #9C27B0;
-      color: white;
-      border: none;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     }
-    #openQwenBtn:hover {
-      background-color: #7b1fa2;
+    #downloadBtn {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      color: #1a1a1a;
     }
-    #promptOutput {
-      display: none; /* Скрытый блок для хранения промпта */
+    
+    .tip-box {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      border-left: 4px solid var(--accent-orange);
+      font-weight: 600;
     }
+    
+    .notification {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      left: 10px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 1000;
+      animation: slideIn 0.3s;
+      font-weight: 600;
+      text-align: center;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .notification.success {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+    .notification.error {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+    
     footer {
       text-align: center;
-      margin-top: 30px;
-      color: #777;
-      font-size: 14px;
+      margin-top: 25px;
+      color: #fff;
+      font-size: 13px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
+    
     @media (max-width: 768px) {
-      .top-bar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .action-buttons {
-        justify-content: center;
-      }
-      .button-group {
-        flex-direction: column;
-      }
-      .button-group button {
-        width: 100%;
-      }
+      body { padding: 5px; }
+      .container { padding: 15px; }
+      h1 { font-size: 20px; }
+      .settings-grid, .materials-grid { grid-template-columns: 1fr; }
+      .button-group { grid-template-columns: 1fr; }
+      .action-buttons { gap: 4px; }
+      .action-buttons button { font-size: 11px; padding: 5px 8px; }
+    }
+    
+    @media (max-width: 480px) {
+      .top-bar { padding: 10px; }
+      .author-signature { font-size: 13px; }
+      h1 { font-size: 18px; }
+      .subtitle { font-size: 14px; }
+      textarea, select, input[type="text"] { font-size: 14px; padding: 10px; }
+      .option-item, .material-item { font-size: 13px; padding: 8px; }
     }
   </style>
 </head>
 <body>
+
+  <div class="notification" id="notification"></div>
 
   <div class="top-bar">
     <div class="author-signature">
@@ -212,123 +342,308 @@
       <div>учитель начальных классов, Беларусь 🇧🇾</div>
     </div>
     <div class="action-buttons">
-      <button style="background:#0088cc;" onclick="window.open('https://t.me/pervyy_zvonok_by  ', '_blank')">
-        <svg style="vertical-align:middle; margin-right:5px;" width="16" height="16" viewBox="0 0 24 24" fill="white">
-          <path d="M20.66 3.89C20.42 3.39 19.97 3.05 19.44 2.98C18.19 2.82 11.43 2.78 6.74 6.14C2.8 8.96 1.66 11.77 1.4 12.36C1.1 13.06 1.27 13.62 1.72 14C1.97 14.21 3.43 15.33 4.82 16.26C5.98 17.04 7.13 17.49 8.06 17.82C9.9 18.46 10.59 18.41 11.22 18.04C11.95 17.61 13.57 16.01 15.64 14.25C16.14 13.82 17.54 12.59 18.67 11.61C18.94 11.38 19.47 11.19 19.8 11.32C20.13 11.44 20.27 11.87 20.12 12.27C19.7 13.36 18.51 16.34 17.85 17.96C17.05 19.91 16.36 20.88 15.66 21.5C14.69 22.36 13.78 22.73 12.8 22.87C11.19 23.1 9.54 22.78 7.93 22.07C4.53 20.57 2.5 17.97 2.12 17.47C0.84 15.81 0.25 14.03 0.41 12.18C0.69 9.02 2.43 5.85 5.61 3.64C8.48 1.64 11.75 0.99 14.86 1.07C18.12 1.16 20.9 2.38 20.66 3.89Z"/>
-        </svg>
-        Телеграм
-      </button>
-      <button style="background:#673AB7;" onclick="window.open('https://sites.google.com/view/irynahayeuskaya/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F-%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0  ', '_blank')">Цифровой портфель</button>
-      <button style="background:#2196F3;" onclick="window.open('https://irynah2022-arch.github.io/my.generator.bel/  ', '_blank')">План-конспект урока</button>
-      <button style="background:#8BC34A;" onclick="window.open('https://irynah2022-arch.github.io/generator-list/  ', '_blank')">Рабочий лист</button>
-      <button style="background:#FF9800;" onclick="window.open('https://irynah2022-arch.github.io/generator-vizual/  ', '_blank')">Наглядный материал</button>
+      <button style="background:#0088cc;" onclick="window.open('https://t.me/pervyy_zvonok_by', '_blank')">Телеграм</button>
+      <button style="background:#673AB7;" onclick="window.open('https://sites.google.com/view/irynahayeuskaya/главная-страница', '_blank')">Цифровой портфель учителя</button>
+      <button style="background:#2196F3;" onclick="window.open('https://irynah2022-arch.github.io/my.generator.bel/', '_blank')">План-конспект</button>
+      <button style="background:#8BC34A;" onclick="window.open('https://irynah2022-arch.github.io/generator-list/', '_blank')">Рабочий лист</button>
+      <button style="background:#FF9800;" onclick="window.open('https://irynah2022-arch.github.io/generator-vizual/', '_blank')">Наглядный материал</button>
       <button style="background:#FF5722;" onclick="window.open('https://irynah2022-arch.github.io/generator_interactiv/', '_blank')">Интерактив</button>
-      <button style="background:#009688;" onclick="window.open('https://eior.by/obrazovanie/obshchee-srednee/index.php  ', '_blank')">EIOR.by</button>
-      <button style="background:#795548;" onclick="window.open('https://e-padruchnik.adu.by/  ', '_blank')">Электронные учебники</button>
-      <button style="background:#FF5722;" onclick="window.open('https://gamma.app/ru  ', '_blank')">Gamma</button>
-      <button style="background:#E91E63;" onclick="window.open('https://learningapps.org/  ', '_blank')">LearningApps</button>
+      <button style="background:#795548;" onclick="window.open('https://e-padruchnik.adu.by/', '_blank')">Электронные учебники</button>
+      <button style="background:#009688;" onclick="window.open('https://eior.by/obrazovanie/obshchee-srednee/index.php', '_blank')">EIOR.by</button>
     </div>
   </div>
 
   <div class="container">
-    <h1>🌈 Помощник учителя Беларуси — генератор промптов<br>для наглядного материала к уроку</h1>
-    <p style="text-align:center; color:#666; margin-bottom:20px;">
-      Вставьте план-конспект — получите комплект ярких, красочных визуальных опор!
-    </p>
+    <h1>🌈 Помощник учителя Беларуси<br>Генератор наглядного материала</h1>
+    <p class="subtitle">Визуальные материалы для демонстрации на уроке</p>
 
-    <label for="language">🔤 Язык материала:</label>
-    <select id="language">
-      <option value="ru">Русский</option>
-      <option value="be">Беларуская мова</option>
-    </select>
+    <div class="form-group">
+      <label for="language">🔤 Язык материала:</label>
+      <select id="language">
+        <option value="ru">Русский язык</option>
+        <option value="be">Беларуская мова</option>
+      </select>
+    </div>
 
-    <label for="lessonPlan">📝 Вставьте фрагмент плана-конспекта урока:</label>
-    <textarea id="lessonPlan" placeholder="Пример: Тема — «Весна». Учащиеся наблюдают признаки весны, называют месяцы, объясняют изменения в природе..."></textarea>
+    <div class="form-group">
+      <label for="subject">📚 Предмет:</label>
+      <select id="subject">
+        <option value="bel_mova">Беларуская мова</option>
+        <option value="bel_lit">Беларуская літаратура</option>
+        <option value="obuch_chtenie">Обучение грамоте (чтение)</option>
+        <option value="obuch_pismo">Обучение грамоте (письмо)</option>
+        <option value="rus_yaz">Русский язык</option>
+        <option value="rus_lit">Русская литература</option>
+        <option value="angl_yaz">Английский язык</option>
+        <option value="nem_yaz">Немецкий язык</option>
+        <option value="matem">Математика</option>
+        <option value="chel_mir">Человек и мир</option>
+        <option value="izo">Изобразительное искусство</option>
+        <option value="trud">Трудовое обучение</option>
+        <option value="muzyka">Музыка</option>
+        <option value="informatika">Информатика</option>
+        <option value="vsem_ist">Всемирная история</option>
+        <option value="ist_bel_context">История Беларуси в контексте всемирной истории</option>
+        <option value="ist_bel">История Беларуси</option>
+        <option value="obshestvo">Обществоведение</option>
+        <option value="geografiya">География</option>
+        <option value="biologiya">Биология</option>
+        <option value="fizika">Физика</option>
+        <option value="astronomiya">Астрономия</option>
+        <option value="himiya">Химия</option>
+        <option value="iskusstvo">Искусство</option>
+        <option value="cherchenie">Черчение</option>
+        <option value="obzh">Основы безопасности жизнедеятельности</option>
+        <option value="fizkultura">Физическая культура и здоровье</option>
+        <option value="dopriziv">Допризывная подготовка</option>
+        <option value="medpodgotovka">Медицинская подготовка</option>
+      </select>
+    </div>
 
-    <label for="grade">📚 Класс:</label>
-    <select id="grade">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-    </select>
+    <div class="form-group">
+      <label for="lessonPlan">📝 Фрагмент плана-конспекта:</label>
+      <textarea id="lessonPlan" placeholder="Пример: Тема — «Дикорастущие деревья». Учащиеся знакомятся с берёзой, дубом, сосной..."></textarea>
+    </div>
 
-    <h2>✅ Выберите типы наглядного материала:</h2>
-    <div class="checkbox-group" id="materials">
-      <label class="checkbox-item"><input type="checkbox" value="Опорная схема / кластер"> Опорная схема / кластер</label>
-      <label class="checkbox-item"><input type="checkbox" value="Алгоритм / пошаговая инструкция"> Алгоритм</label>
-      <label class="checkbox-item"><input type="checkbox" value="Правило / памятка"> Правило / памятка</label>
-      <label class="checkbox-item"><input type="checkbox" value="Таблица / сравнительная схема"> Таблица / сравнение</label>
-      <label class="checkbox-item"><input type="checkbox" value="Классификационная схема"> Дерево понятий</label>
-      <label class="checkbox-item"><input type="checkbox" value="Визуальная модель"> Упрощённая диаграмма</label>
-      <label class="checkbox-item"><input type="checkbox" value="Схема с пояснениями"> Схема с иконками и пояснениями</label>
-      <label class="checkbox-item">
-        <input type="checkbox" value="other_material"> Другое:
-        <input type="text" id="otherMaterialText" style="width:120px; margin-left:5px; padding:4px; font-size:13px;">
+    <div class="form-group">
+      <label for="grade">📚 Класс:</label>
+      <select id="grade">
+        <option value="1">1 класс</option>
+        <option value="2">2 класс</option>
+        <option value="3">3 класс</option>
+        <option value="4">4 класс</option>
+        <option value="5">5 класс</option>
+        <option value="6">6 класс</option>
+        <option value="7">7 класс</option>
+        <option value="8">8 класс</option>
+        <option value="9">9 класс</option>
+        <option value="10">10 класс</option>
+        <option value="11">11 класс</option>
+      </select>
+    </div>
+
+    <div class="settings-grid">
+      <div class="setting-card">
+        <h3>📐 Формат А4</h3>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="orientation" value="portrait" checked>
+            <span>📄 Вертикальный<br><small>210×297 мм</small></span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="orientation" value="landscape">
+            <span>📐 Горизонтальный<br><small>297×210 мм</small></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="setting-card">
+        <h3>📏 Размер объектов</h3>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="objsize" value="large" checked>
+            <span>🔍 ОЧЕНЬ КРУПНОЙ<br><small>15-20 см (плакат)</small></span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="objsize" value="medium">
+            <span>📊 Средний<br><small>10-12 см</small></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="setting-card">
+        <h3>🎨 Стиль изображений</h3>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="imageStyle" value="pixar" checked>
+            <span>🎬 Детские<br><small>яркие, мультяшные</small></span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="imageStyle" value="realistic">
+            <span>📷 Реалистичные<br><small>фотографичные</small></span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="imageStyle" value="mixed">
+            <span>🎭 Смешанный<br><small>детский + реализм</small></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <h2>✅ Типы наглядного материала</h2>
+    
+    <div class="tip-box">
+      💡 Если не выбрать ни один тип — ИИ автоматически подберёт оптимальные типы наглядного материала!
+    </div>
+    
+    <div class="materials-grid" id="materials">
+      <label class="material-item">
+        <input type="checkbox" value="Отдельные плакаты объектов"> 
+        <span>📊 Отдельные плакаты объектов</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="Сравнительная таблица"> 
+        <span>📋 Сравнительная таблица</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="Классификационная схема"> 
+        <span>🌳 Классификационная схема</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="Алгоритм / пошаговая инструкция"> 
+        <span>🔢 Алгоритм</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="Правило / памятка"> 
+        <span>📋 Правило / памятка</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="other_material"> 
+        <span>✨ Другое: <input type="text" id="otherMaterialText" placeholder="укажите тип"></span>
       </label>
     </div>
 
-    <h2>✨ Дополнительно:</h2>
-    <div class="checkbox-group" id="features">
-      <label class="checkbox-item"><input type="checkbox" value="Инклюзивный формат (крупный шрифт, контраст)"> Инклюзивный формат</label>
-      <label class="checkbox-item"><input type="checkbox" value="Связь с жизнью / краеведение"> Связь с жизнью</label>
-      <label class="checkbox-item"><input type="checkbox" value="Цветовая маркировка ключевых понятий"> Цветовая маркировка</label>
-      <label class="checkbox-item"><input type="checkbox" value="Подходит для проецирования на экран"> Для проектора</label>
-      <label class="checkbox-item"><input type="checkbox" value="Подходит для печати на A4"> Печать на A4</label>
-      <label class="checkbox-item"><input type="checkbox" value="Подходит для печати на A3"> Печать на A3</label>
-      <label class="checkbox-item">
-        <input type="checkbox" value="other_feature"> Другое:
-        <input type="text" id="otherFeatureText" style="width:120px; margin-left:5px; padding:4px; font-size:13px;">
+    <h2>✨ Дополнительно</h2>
+    <div class="materials-grid" id="features">
+      <label class="material-item">
+        <input type="checkbox" value="Инклюзивный формат (высокий контраст, чёткие границы)"> 
+        <span>♿ Инклюзивный формат</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="Связь с жизнью / краеведение Беларуси"> 
+        <span>🇧🇾 Связь с жизнью</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="Для печати на А3 (большой плакат)"> 
+        <span>📐 Для печати на А3</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="Для проецирования на экран/интерактивную доску"> 
+        <span>📺 Для проектора</span>
+      </label>
+      <label class="material-item">
+        <input type="checkbox" value="other_feature"> 
+        <span>✨ Другое: <input type="text" id="otherFeatureText" placeholder="укажите"></span>
       </label>
     </div>
 
-    <!-- Кнопки в одной строке -->
     <div class="button-group">
-      <button id="generateBtn" onclick="generatePrompt()">Сгенерировать промпт</button>
-      <button id="copyBtn" onclick="copyPrompt()" disabled>Скопировать</button>
-      <button id="openQwenBtn" onclick="openInQwen()" disabled>Открыть в Qwen</button>
+      <button id="generateBtn" onclick="generatePrompt()">
+        <span>🎨</span> <span>Сгенерировать<br>промпт</span>
+      </button>
+      <button id="copyBtn" onclick="copyPrompt()" disabled>
+        <span>📋</span> <span>Скопировать</span>
+      </button>
+      <button id="openQwenBtn" onclick="openInQwen()" disabled>
+        <span>🚀</span> <span>Открыть<br>в Qwen</span>
+      </button>
+      <button id="downloadBtn" onclick="downloadAsHTML()" disabled>
+        <span>💾</span> <span>Скачать<br>HTML</span>
+      </button>
     </div>
 
-    <!-- Скрытый блок для хранения промпта -->
-    <div id="promptOutput"></div>
+    <div id="promptOutput" style="display:none;"></div>
+    <div id="htmlOutput" style="display:none;"></div>
 
     <footer>
-      © Ирина Гаевская, учитель начальных классов, Беларусь
+      © Ирина Гаевская, учитель начальных классов, Беларусь 🇧🇾 
     </footer>
   </div>
 
   <script>
     const materialsBE = {
-      "Опорная схема / кластер": "Апорная схема / кластар",
+      "Отдельные плакаты объектов": "Асобныя плакаты аб'ектаў",
+      "Сравнительная таблица": "Параўнальная табліца",
+      "Классификационная схема": "Класіфікацыйная схема",
       "Алгоритм / пошаговая инструкция": "Алгарытм",
-      "Правило / памятка": "Правіла / памятка",
-      "Таблица / сравнительная схема": "Табліца / параўнанне",
-      "Классификационная схема": "Дрэва паняццяў",
-      "Визуальная модель": "Спрошчаная дыяграма",
-      "Схема с пояснениями": "Схема з іконкамі і тлумачэннямі"
+      "Правило / памятка": "Правіла / памятка"
     };
 
     const featuresBE = {
-      "Инклюзивный формат (крупный шрифт, контраст)": "Інклюзіўны фармат (буйны шрыфт, кантраст)",
-      "Связь с жизнью / краеведение": "Сувязь з жыццём / краязнаўства",
-      "Цветовая маркировка ключевых понятий": "Каляровая маркіроўка ключавых паняццяў",
-      "Подходит для проецирования на экран": "Для праектара",
-      "Подходит для печати на A4": "Падыходзіць для друку на A4",
-      "Подходит для печати на A3": "Падыходзіць для друку на A3"
+      "Инклюзивный формат (высокий контраст, чёткие границы)": "Інклюзіўны фармат (высокі кантраст, выразныя межы)",
+      "Связь с жизнью / краеведение Беларуси": "Сувязь з жыццём / краязнаўства Беларусі",
+      "Для печати на А3 (большой плакат)": "Для друку на А3 (вялікі плакат)",
+      "Для проецирования на экран/интерактивную доску": "Для праектара/інтэрактыўнай дошкі"
     };
 
-    function getCheckedWithCustom(containerId, customInputId, dictRU, dictBE, lang) {
+    const subjectsRU = {
+      bel_mova: "беларускай мове",
+      bel_lit: "беларускай літаратуры",
+      obuch_chtenie: "обучению грамоте (чтению)",
+      obuch_pismo: "обучению грамоте (письму)",
+      rus_yaz: "русскому языку",
+      rus_lit: "русской литературе",
+      angl_yaz: "английскому языку",
+      nem_yaz: "немецкому языку",
+      matem: "математике",
+      chel_mir: "человеку и миру",
+      izo: "изобразительному искусству",
+      trud: "трудовому обучению",
+      muzyka: "музыке",
+      informatika: "информатике",
+      vsem_ist: "всемирной истории",
+      ist_bel_context: "истории Беларуси в контексте всемирной истории",
+      ist_bel: "истории Беларуси",
+      obshestvo: "обществоведению",
+      geografiya: "географии",
+      biologiya: "биологии",
+      fizika: "физике",
+      astronomiya: "астрономии",
+      himiya: "химии",
+      iskusstvo: "искусству",
+      cherchenie: "черчению",
+      obzh: "основам безопасности жизнедеятельности",
+      fizkultura: "физической культуре и здоровью",
+      dopriziv: "допризывной подготовке",
+      medpodgotovka: "медицинской подготовке"
+    };
+    const subjectsBE = {
+      bel_mova: "беларускай мове",
+      bel_lit: "беларускай літаратуры",
+      obuch_chtenie: "навучанню грамаце (чытанню)",
+      obuch_pismo: "навучанню грамаце (пісьму)",
+      rus_yaz: "рускай мове",
+      rus_lit: "рускай літаратуры",
+      angl_yaz: "англійскай мове",
+      nem_yaz: "нямецкай мове",
+      matem: "матэматыцы",
+      chel_mir: "чалавек і свет",
+      izo: "выяўленчаму мастацтву",
+      trud: "працоўнаму навучанню",
+      muzyka: "музыцы",
+      informatika: "інфарматыцы",
+      vsem_ist: "сусветнай гісторыі",
+      ist_bel_context: "гісторыі Беларусі ў кантэксце сусветнай гісторыі",
+      ist_bel: "гісторыі Беларусі",
+      obshestvo: "грамадазнаўству",
+      geografiya: "геаграфіі",
+      biologiya: "біялогіі",
+      fizika: "фізіцы",
+      astronomiya: "астраноміі",
+      himiya: "хіміі",
+      iskusstvo: "мастацтву",
+      cherchenie: "чарчэнню",
+      obzh: "асновам бяспекі жыццядзейнасці",
+      fizkultura: "фізічнай культуры і здароўю",
+      dopriziv: "дапрызванай падрыхтоўцы",
+      medpodgotovka: "медыцынскай падрыхтоўцы"
+    };
+
+    function showNotification(message, type = 'success') {
+      const notif = document.getElementById('notification');
+      notif.textContent = message;
+      notif.className = 'notification ' + type;
+      notif.style.display = 'block';
+      setTimeout(() => {
+        notif.style.display = 'none';
+      }, 4000);
+    }
+
+    function getCheckedValues(containerId, dictRU, dictBE, lang, customId) {
       const values = [];
       document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`).forEach(cb => {
         if (cb.value === 'other_material' || cb.value === 'other_feature') {
-          const customText = document.getElementById(customInputId)?.value.trim();
+          const customText = document.getElementById(customId)?.value.trim();
           if (customText) values.push(customText);
         } else {
           values.push(lang === 'be' ? dictBE[cb.value] || cb.value : cb.value);
@@ -339,173 +654,666 @@
 
     function generatePrompt() {
       const lang = document.getElementById('language').value;
+      const subjectKey = document.getElementById('subject').value;
       const lessonPlan = document.getElementById('lessonPlan').value.trim();
       const grade = parseInt(document.getElementById('grade').value);
+      const orientation = document.querySelector('input[name="orientation"]:checked').value;
+      const objSize = document.querySelector('input[name="objsize"]:checked').value;
+      const imageStyle = document.querySelector('input[name="imageStyle"]:checked').value;
 
       if (!lessonPlan) {
-        alert(lang === 'be' ? "Калі ласка, увядзіце фрагмент план-канспекта." : "Пожалуйста, введите фрагмент план-конспекта.");
+        showNotification(lang === 'be' ? "Калі ласка, увядзіце фрагмент план-канспекта!" : "Пожалуйста, введите фрагмент план-конспекта!", 'error');
         return;
       }
 
-      const materialsText = getCheckedWithCustom('materials', 'otherMaterialText', materialsBE, materialsBE, lang);
-      const featuresText = getCheckedWithCustom('features', 'otherFeatureText', featuresBE, featuresBE, lang);
+      const materialsText = getCheckedValues('materials', materialsBE, materialsBE, lang, 'otherMaterialText');
+      const featuresText = getCheckedValues('features', featuresBE, featuresBE, lang, 'otherFeatureText');
+      const autoSelect = materialsText.length === 0;
 
-      if (materialsText.length === 0) {
-        alert(lang === 'be' ? "Выберыце хаця б адзін тып матэрыялу." : "Выберите хотя бы один тип материала.");
-        return;
+      const subjectName = lang === 'be' ? subjectsBE[subjectKey] : subjectsRU[subjectKey];
+
+      const pageWidth = orientation === 'landscape' ? '297mm' : '210mm';
+      const pageHeight = orientation === 'landscape' ? '210mm' : '297mm';
+      const orientationName = orientation === 'landscape' ? 'landscape' : 'portrait';
+
+      const imageWidth = orientation === 'landscape' ? '200mm' : '150mm';
+      const imageHeight = orientation === 'landscape' ? '150mm' : '200mm';
+      const imageAspect = orientation === 'landscape' ? 'landscape (ширина > высота)' : 'portrait (высота > ширина)';
+
+      const headerSize = objSize === 'large' ? '60px' : '42px';
+      const textSize = objSize === 'large' ? '36px' : '28px';
+
+      let styleDescription = '';
+      let styleExamples = '';
+      
+      if (imageStyle === 'pixar') {
+        styleDescription = lang === 'be'
+          ? "стыль Pixar: яркія насычаныя колеры (#FF6B9D, #FFD93D, #6BCBFF, #6BCB77), мяккія градыенты, аб'ёмныя цені, дружалюбныя персанажы, мультяшны стыль"
+          : "стиль Pixar: яркие насыщенные цвета (#FF6B9D, #FFD93D, #6BCBFF, #6BCB77), мягкие градиенты, объёмные тени, дружелюбные персонажи, мультяшный стиль";
+        styleExamples = lang === 'be'
+          ? "ПРЫКЛАДЫ: дрэвы з круглымі кронамі і тоўстымі стваламі, жывёлы з вялікімі вачыма і ўсмешкамі, яркія кветкі з тлустымі лісцікамі"
+          : "ПРИМЕРЫ: деревья с круглыми кронами и толстыми стволами, животные с большими глазами и улыбками, яркие цветы с толстыми листьями";
+      } else if (imageStyle === 'realistic') {
+        styleDescription = lang === 'be'
+          ? "РЭАЛІСТЫЧНЫ СТЫЛЬ: фатаграфічная якасць, дэталёвыя тэкстуры, натуральнае асвятленне, рэалістычныя прапорцыі, прыродныя колеры"
+          : "РЕАЛИСТИЧНЫЙ СТИЛЬ: фотографическое качество, детальные текстуры, естественное освещение, реалистичные пропорции, природные цвета";
+        styleExamples = lang === 'be'
+          ? "ПРЫКЛАДЫ: дрэва з бачнай тэкстурай кары, лісце з бачнымі жылкамі, жывёлы з бачнай поўсцю, птушкі з бачнымі пёрамі"
+          : "ПРИМЕРЫ: дерево с видимой текстурой коры, листья с видимыми прожилками, животные с видимой шерстью, птицы с видимыми перьями";
+      } else {
+        styleDescription = lang === 'be'
+          ? "ЗМЯШАНЫ СТЫЛЬ: камбінацыя Pixar і рэалізму — агульная форма як у Pixar, але з дэталямі рэалізму (тэкстуры, цені)"
+          : "СМЕШАННЫЙ СТИЛЬ: комбинация Pixar и реализма — общая форма как у Pixar, но с деталями реализма (текстуры, тени)";
+        styleExamples = lang === 'be'
+          ? "ПРЫКЛАДЫ: дрэва з мультяшнай формай, але з бачнай тэкстурай кары; жывёлы з дружалюбнымі тварамі, але з бачнай поўсцю"
+          : "ПРИМЕРЫ: дерево с мультяшной формой, но с видимой текстурой коры; животные с дружелюбными лицами, но с видимой шерстью";
       }
 
-      let intro = lang === 'be'
-        ? "Ты — настаўнік-метадыст Рэспублікі Беларусь і таленавіты вэб-дызайнер."
-        : "Ты — учитель-методист Республики Беларусь и талантливый веб-дизайнер.";
+      const RU = {
+        systemInstruction: `[СИСТЕМНАЯ ИНСТРУКЦИЯ]
+Ты работаешь в трёх ролях одновременно:
+1️⃣ Учитель-методист начальных классов Республикі Беларусь
+2️⃣ Веб-дизайнер, специализирующийся на детских образовательных материалах (стиль: Pixar, доступность, инклюзия)
+3️⃣ Фронтенд-разработчик (чистый HTML+CSS, без JS, без внешних зависимостей, оптимизация под печать А4/А3)
 
-      const languageInstruction = lang === 'be'
-        ? "Ствары на беларускай мове."
-        : "Создай на русском языке.";
+Предмет: ${subjectName}. Класс: ${grade}.
+Создай на русском языке.`,
 
-      let prompt = `${intro} ${languageInstruction}\n`;
+        autoSelect: `АВТОМАТИЧЕСКИЙ ВЫБОР: На основе темы урока по предмету "${subjectName}" для ${grade} класса самостоятельно подбери оптимальные типы наглядного материала и создай НАГЛЯДНЫЕ ПЛАКАТЫ.`,
+        selectedTypes: `Создай следующие типы наглядного материала: ${materialsText.join(', ')}`,
+        basedOn: `На основе: «${lessonPlan}»`,
+        
+        criticalRequirements: '=== 🔥 КРИТИЧЕСКИ ВАЖНЫЕ ТРЕБОВАНИЯ — НАСТОЯЩИЕ ПЛАКАТЫ! ===',
+        
+        plakatDefinition: `
+📌 **ЧТО ТАКОЕ НАГЛЯДНЫЙ МАТЕРИАЛ:**
+Наглядный материал на уроке — это дидактические средства (картины, модели, таблицы, изображения, фото, инфографика, иллюстрации, схемы, карты, плакаты и др.), используемые для визуализации информации, облегчения понимания, запоминания и формирования практических навыков у учащихся.
 
-      prompt += lang === 'be'
-        ? `Ствары адзіны HTML-файл з поўным камплектам **нагляднага матэрыялу для настаўніка** на аснове наступнага фрагмента ўрока:\n«${lessonPlan}»\nдля ${grade} класа.\n\n`
-        : `Создай единый HTML-файл с полным комплектом **наглядного материала для учителя** на основе следующего фрагмента урока:\n«${lessonPlan}»\nдля ${grade} класса.\n\n`;
+✅ **ТРЕБОВАНИЯ К НАГЛЯДНОМУ МАТЕРИАЛУ:**
+• КРУПНЫЕ изображения (15-20 см, 70-80% страницы А4)
+• Каждый объект — на ОТДЕЛЬНОЙ странице А4 (НЕ несколько на одной!)
+• Видно с расстояния 3-5 метров (с задней парты)
+• Можно распечатать как ПЛАКАТ и повесить на стену
+• Можно показать на проекторе — всё читаемо
+• Минимум текста — только подписи и ключевые признаки
+`,
 
-      prompt += lang === 'be'
-        ? `Уключы наступныя матэрыялы:\n– ${materialsText.join('\n– ')}\n\n`
-        : `Включи следующие материалы:\n– ${materialsText.join('\n– ')}\n\n`;
+        imageWarning: `
+⚠️️ ВНИМАНИЕ! ПРЕЖДЕ ЧЕМ ГЕНЕРИРОВАТЬ, ПРОЧИТАЙ ЭТО: ⚠️⚠️
 
-      prompt += lang === 'be' ? "Патрабаванні:\n" : "Требования:\n";
-      
-      // === ЯРКИЙ СТИЛЬ ПИКСАР ===
-      prompt += lang === 'be'
-        ? `– **Увесь наглядны матэрыял павінен быць у яркім, красачным стылі Піксар**: насычаныя колеры, вялікія дружалюбныя персанажы (напрыклад, савёнкі, звяркі), эмоджы, градыенты, цёплыя цені (ружовы, жоўты, блакітны, зялёны);\n`
-        : `– **Весь наглядный материал должен быть в ярком, красочном стиле Пиксар**: насыщенные цвета, крупные дружелюбные персонажи (например, совята, зверьки), эмодзи, градиенты, тёплые тона (розовый, жёлтый, голубой, зелёный);\n`;
-      
-      prompt += lang === 'be'
-        ? `– **Кожны тып матэрыялу — на сваім яркім колеравым фоне** з градыентам і закругленымі кутамі;\n`
-        : `– **Каждый тип материала — на своём ярком цветном фоне** с градиентом и закруглёнными углами;\n`;
-      // === КОНЕЦ СТИЛЯ ПИКСАР ===
+🚫 КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО:
+   • Простые SVG-иконки (круг + палочка = дерево)
+   • Эмодзи вместо изображений (🌳 — это НЕ изображения!)
+   • Мультяшные человечки с круглой головой и палочками вместо рук/ног
+   • Простые геометрические фигуры без деталей
+   • Размещать несколько объектов на одной странице
+   • Размещать БОЛЕЕ ОДНОГО основного объекта на одной странице А4
+   • Добавлять дополнительные блоки, таблицы, схемы на страницу с основным объектом
+   • Использовать текстовые иконки или символы
+   • Использовать placeholder'ы или пустые блоки
+   • Использовать внешние ссылки на изображения
+   • Писать длинные описания, абзацы текста
 
-      // === РЕАЛИСТИЧНЫЕ ВОЗМОЖНОСТИ ===
-      prompt += lang === 'be'
-        ? `– **РЭАЛІСТЫЧНЫЯ МАГЧЫМАСЦІ ВЕБ-РАЗРАБОТКІ (толькі HTML+CSS):**\n`
-        : `– **РЕАЛИСТИЧНЫЕ ВОЗМОЖНОСТИ ВЕБ-РАЗРАБОТКИ (только HTML+CSS):**\n`;
+✅ ТРЕБУЕТСЯ:
+   • Сгенерировать РЕАЛЬНЫЕ PNG или SVG изображения через base64
+   • Каждый объект — на ОТДЕЛЬНОЙ странице А4
+   • Формат изображений ДОЛЖЕН СООТВЕТСТВОВАТЬ формату страницы: ${imageAspect}
+   • Минимум 5-10 качественных изображений (каждое на своей странице)
+   • Формат: <img src="image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..." alt="...">
+   • ТОЛЬКО 1 объект + название + 2-3 признака на странице
+`,
 
-      prompt += lang === 'be'
-        ? `  • Апорная схема / кластар: каляровыя блокі з закругленымі кутамі (24px), стрэлкі праз CSS (→ ↓ ↑), іконкі з бібліятэкі (📌 🔑 💡), шрыфт 36px для загалоўкаў, 24px для тэксту;\n`
-        : `  • Опорная схема / кластер: цветные блоки с закруглёнными углами (24px), стрелки через CSS (→ ↓ ↑), иконки из библиотеки (📌 🔑 💡), шрифт 36px для заголовков, 24px для текста;\n`;
+        checkBefore: '1. **ШАГ 1: АНАЛИЗ ТЕМЫ И ОПРЕДЕЛЕНИЕ ОБЪЕКТОВ:**',
+        checkPoints: [
+          '• Внимательно проанализируй тему урока и определи КЛЮЧЕВЫЕ ОБЪЕКТЫ для визуализации',
+          '• Для КАЖДОГО объекта создай ОТДЕЛЬНУЮ страницу А4',
+          '• Для ЛЮБОЙ темы определи, что нужно визуализировать:',
+          '  - Если тема про ПРИРОДУ (деревья, животные, растения) — создай отдельные плакаты для каждого объекта',
+          '  - Если тема про МАТЕМАТИКУ (дроби, фигуры, числа) — создай отдельные плакаты для каждой фигуры/понятия',
+          '  - Если тема про ИСТОРИЮ (события, личности) — создай отдельные плакаты для каждого события/личности',
+          '  - Если тема про ЯЗЫК (слова, правила) — создай отдельные плакаты для каждого правила/слова',
+          '  - Если тема про ЛИТЕРАТУРУ (писатели, поэты, стихи, произведения) — создай:',
+          '    * Портреты писателей/поэтов (славянской внешности!)',
+          '    * Иллюстрации к произведениям',
+          '    * Визуализацию ключевых образов из стихов',
+          '• Составь список объектов, для каждого — отдельная страница А4',
+          '• Проверь, чтобы все факты о Беларуси были точными'
+        ],
+        
+        exactSize: '2. **ШАГ 2: РАЗМЕРЫ ПЛАКАТОВ (СТРОГО СОБЛЮДАТЬ!):**',
+        sizePoints: [
+          `• **КАЖДЫЙ ОБЪЕКТ — НА ОТДЕЛЬНОЙ СТРАНИЦЕ А4** (НЕ несколько на одной!)`,
+          `• Точные размеры страницы: ширина ${pageWidth}, высота ${pageHeight}`,
+          `• ФОРМАТ ИЗОБРАЖЕНИЙ = ФОРМАТ СТРАНИЦЫ: ${imageAspect}`,
+          `• Размер ИЗОБРАЖЕНИЯ: ширина ${imageWidth}, высота ${imageHeight}`,
+          `• СТРУКТУРА СТРАНИЦЫ:`,
+          `  1. Изображение объекта (по центру, крупно, ширина ${imageWidth}, высота ${imageHeight})`,
+          `  2. Название объекта (под изображением, ${headerSize})`,
+          `  3. 2-3 признака (под названием, ${textSize})`,
+          `  4. БОЛЬШЕ НИЧЕГО!`,
+          `• Используй: <div class="page" style="width: ${pageWidth}; height: ${pageHeight}; margin: 0 auto; page-break-after: always; background: white; padding: 15mm; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">`,
+          `• Изображение: <img src="image/png;base64,..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain; display: block;">`,
+          `• CSS для печати: @page { size: A4 ${orientationName}; margin: 0; }`,
+          `• @media print { .page { page-break-after: always; width: ${pageWidth}; height: ${pageHeight}; } }`,
+          `• Последняя страница БЕЗ page-break-after`,
+          `• ⚠️ СТРОГО: НА ОДНОЙ СТРАНИЦЕ — ТОЛЬКО ОДИН ОБЪЕКТ!`
+        ],
+        
+        textColumns: '3. **ШАГ 3: РАЗМЕЩЕНИЕ ТЕКСТА В КОЛОНКИ (ОБЯЗАТЕЛЬНО ДЛЯ ТЕКСТОВ!):**',
+        textColumnsPoints: [
+          '• Для ТЕКСТОВЫХ материалов (стихи, правила, алгоритмы, памятки, таблицы):',
+          '  - **РАЗМЕЩАЙ ТЕКСТ В 2-3 КОЛОНКИ** — это ОБЯЗАТЕЛЬНО!',
+          '  - Используй CSS: display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;',
+          '  - Это гарантирует, что ВСЁ ПОМЕСТИТСЯ на страницу!',
+          '  - Особенно важно для:',
+          '    * Сравнительных таблиц',
+          '    * Классификационных схем',
+          '    * Алгоритмов',
+          '    * Правил/памяток',
+          '    * Стихотворений',
+          '  - Шрифт в колонках: ${textSize}',
+          '  - Отступы между колонками: 15px',
+          '  - Если текст не помещается — добавь 3-ю колонку!'
+        ],
+        
+        imageGen: '4. **ШАГ 4: 🔥 ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЙ (ОБЯЗАТЕЛЬНО!):**',
+        imagePoints: [
+          `• **КРИТИЧЕСКИ ВАЖНО:** Сгенерируй КРУПНЫЕ, ДЕТАЛИЗИРОВАННЫЕ изображения (НЕ простые иконки!)`,
+          `• **РАЗМЕР:** ширина ${imageWidth}, высота ${imageHeight}`,
+          `• **ФОРМАТ:** ${imageAspect} (соответствует формату страницы!)`,
+          `• **СТИЛЬ:** ${styleDescription}`,
+          `• **ПРИМЕРЫ:** ${styleExamples}`,
+          `• **ДЕТАЛИЗАЦИЯ:** Должны быть видны все детали:`,
+          `  - Для деревьев: текстура коры (белая с чёрными полосками у берёзы), форма листьев, плоды, общая форма кроны`,
+          `  - Для животных: шерсть/перья, глаза, лапы/крылья, характерные признаки`,
+          `  - Для геометрических фигур: чёткие линии, пропорции, подписи сторон/углов`,
+          `  - Для исторических событий: детали одежды, архитектура, атрибуты эпохи`,
+          `  - Для литературы: портреты писателей, иллюстрации к произведениям`,
+          `• **ФОРМАТ:** Только base64 PNG или inline SVG с ОЧЕНЬ детальной прорисовкой`,
+          `• **ПРИМЕР КОРРЕКТНОГО КОДА:**`,
+          `  <img src="image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain;" alt="Описание">`,
+          `• **КРИТИЧЕСКИ ВАЖНО: Если на изображениях есть люди — ТОЛЬКО СЛАВЯНСКОЙ ВНЕШНОСТИ!**`,
+          `  Светлая кожа, светлые/русые волосы, голубые/серые глаза.`,
+          `  НЕ африканцы, НЕ азиаты, НЕ латиноамериканцы!`,
+          `• ТЕКСТ НА ИЗОБРАЖЕНИЯХ: ТОЛЬКО на русском языке большими буквами (никогда не используй английские буквы!)`,
+          `• **ЗАПРЕЩЕНО:** простые SVG (круг + палочка), emoji (🌳), текстовые иконки, placeholder'ы, мелкие изображения (<10 см)`,
+          `• Каждое изображение должно быть УНИКАЛЬНЫМ (не повторяющимся)!`,
+          `• Если не можешь сгенерировать base64 — используй inline SVG с ОЧЕНЬ детальной прорисовкой!`
+        ],
+        
+        textMinimize: '5. **ШАГ 5: ТЕКСТ — СТРОГИЕ ОГРАНИЧЕНИЯ:**',
+        textPoints: [
+          '• НА СТРАНИЦЕ ДОЛЖНО БЫТЬ:',
+          '  1. Одно крупное изображение',
+          '  2. Одно название (заголовок)',
+          '  3. ДВА-ТРИ коротких признака',
+          '• ЗАПРЕЩЕНО:',
+          '  ❌ Абзацы текста',
+          '  ❌ Длинные описания',
+          '  ❌ Дополнительные таблицы или схемы на той же странице',
+          '  ❌ Более 3-х пунктов',
+          '• Пример:',
+          '  ❌ НЕЛЬЗЯ: "Берёза — это лиственное дерево с белой корой, овальными листьями с зубчиками по краям, достигает высоты 20-25 метров..."',
+          '  ✅ НУЖНО: "БЕРЁЗА\\n• Белый ствол\\n• Овальные листья"',
+          '• Шрифт заголовка: ' + headerSize + ', жирный',
+          '• Шрифт подписей: ' + textSize
+        ],
+        
+        pageStructure: '6. **ШАГ 6: СТРУКТУРА КАЖДОЙ СТРАНИЦЫ (ПРИМЕР):**',
+        pageStructurePoints: [
+          `СТРАНИЦА 1 — БЕРЁЗА:`,
+          `<div class="page">`,
+          `  <img src="image/png;base64,..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain;">`,
+          `  <h1 style="font-size: ${headerSize}; font-weight: bold; color: #2C3E50;">БЕРЁЗА</h1>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Белый ствол</p>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Овальные листья</p>`,
+          `  <p style="font-size: 12px; color: #999; margin-top: 20px;">© Ирина Гаевская, учитель начальных классов, Республика Беларусь</p>`,
+          `</div>`,
+          ``,
+          `СТРАНИЦА 2 — ДУБ:`,
+          `<div class="page">`,
+          `  <img src="image/png;base64,..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain;">`,
+          `  <h1 style="font-size: ${headerSize}; font-weight: bold; color: #2C3E50;">ДУБ</h1>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Мощный ствол</p>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Жёлуди</p>`,
+          `  <!-- ПОДПИСЬ АВТОРА ТОЛЬКО НА ПЕРВОЙ СТРАНИЦЕ! -->`,
+          `</div>`,
+          ``,
+          `И так далее — каждый объект на ОТДЕЛЬНОЙ странице!`
+        ],
+        
+        classificationScheme: '7. **ШАГ 7: КЛАССИФИКАЦИОННЫЕ СХЕМЫ (КОМПАКТНО!):**',
+        classificationPoints: [
+          '• Если создаёшь классификационную схему:',
+          '  - Используй КОМПАКТНЫЙ формат',
+          '  - Максимум 4-6 элементов на схеме',
+          '  - Короткие подписи (1-3 слова)',
+          '  - Уменьши шрифт до 18-24px для элементов схемы',
+          '  - Размести схему в верхней части страницы',
+          '  - Оставь место для подписи автора внизу',
+          '  - ВСЁ ДОЛЖНО ПОМЕСТИТЬСЯ НА ОДНУ СТРАНИЦУ!'
+        ],
+        
+        mobile: '8. **ШАГ 8: МОБИЛЬНАЯ АДАПТАЦИЯ:**',
+        mobilePoints: [
+          '• <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
+          '• @media (max-width: 768px) { ... }',
+          '• @media (max-width: 480px) { ... }',
+          '• На телефоне можно масштабировать для просмотра деталей'
+        ],
+        
+        additional: '9. **ДОПОЛНИТЕЛЬНЫЕ ТРЕБОВАНИЯ:**',
+        
+        final: '10. **ФИНАЛЬНЫЕ ТРЕБОВАНИЯ:**',
+        finalPoints: [
+          '• Весь код — в ОДНОМ HTML-файле (CSS в <style>)',
+          '• Только HTML + CSS, БЕЗ JavaScript',
+          '• Каждый объект — на ОТДЕЛЬНОЙ странице А4',
+          '• СТРОГО: НЕ БОЛЕЕ ОДНОГО ОБЪЕКТА НА СТРАНИЦЕ!',
+          '• Изображения: ширина ${imageWidth}, высота ${imageHeight}, формат ${imageAspect}',
+          '• Можно распечатать как ПЛАКАТЫ и повесить на стену',
+          '• Можно показать на проекторе — всё видно с задней парты',
+          '• **ВАЖНО: Подпись автора "© Ирина Гаевская, учитель начальных классов, Республика Беларусь" — ТОЛЬКО НА ПЕРВОЙ СТРАНИЦЕ!**',
+          '• На остальных страницах подписи автора НЕТ!',
+          '• КРИТИЧЕСКИ ВАЖНО: Это НАГЛЯДНЫЙ МАТЕРИАЛ (плакаты), а НЕ рабочий лист или презентация!',
+          '• ЕСЛИ ИНФОРМАЦИЯ НЕ ПОМЕЩАЕТСЯ — ИСПОЛЬЗУЙ КОЛОНКИ (2 или 3)!',
+          '• Лучше разместить текст в колонки, чем обрезать!',
+          `• СТИЛЬ ИЗОБРАЖЕНИЙ: ${styleDescription}`
+        ],
+        
+        important: `🔥 ВАЖНО: Создай НАСТОЯЩИЕ ПЛАКАТЫ — каждый объект на отдельной странице А4, изображение ${imageWidth}×${imageHeight}, формат ${imageAspect}, видно с расстояния 3-5 метров. СТРОГО: один объект на странице! Подпись автора — ТОЛЬКО НА ПЕРВОЙ СТРАНИЦЕ! ТЕКСТ РАЗМЕЩАЙ В 2-3 КОЛОНКИ для экономии места! Простые иконки и emoji НЕ ПРИЕМЛЕМЫ!`,
+        
+        verification: `
+=== ✅ ПРОВЕРКА ПЕРЕД ГЕНЕРАЦИЕЙ (ОБЯЗАТЕЛЬНО!) ===
+Прежде чем генерировать HTML-код, ПРОВЕРЬ:
 
-      prompt += lang === 'be'
-        ? `  • Алгарытм: нумараваныя крокі з іконкамі (1️⃣ 2️⃣ 3️⃣) і стрэлкамі →, шрыфт 32px, адступы 20px паміж крокамі;\n`
-        : `  • Алгоритм: нумерованные шаги с иконками (1️⃣ 2️⃣ 3️⃣) и стрелками →, шрифт 32px, отступы 20px между шагами;\n`;
+1. ✓ Все ли изображения — РЕАЛЬНЫЕ (base64 PNG/SVG), а НЕ иконки/emoji?
+2. ✓ Каждый объект на ОТДЕЛЬНОЙ странице А4?
+3. ✓ Формат изображений соответствует формату страницы (${imageAspect})?
+4. ✓ Если есть люди — ТОЛЬКО СЛАВЯНСКОЙ ВНЕШНОСТИ?
+5. ✓ Текст размещён в 2-3 колонки (для текстовых материалов)?
+6. ✓ Подпись автора — ТОЛЬКО на первой странице?
+7. ✓ Всё помещается на страницы (нет обрезки)?
+8. ✓ Минимум текста, максимум визуала?
 
-      prompt += lang === 'be'
-        ? `  • Правіла / памятка: яркі каляровы блок з тлустым шрыфтам 36px, рамкай 10px, іконкай ⓘ;\n`
-        : `  • Правило / памятка: яркий цветной блок с жирным шрифтом 36px, рамкой 10px, иконкой ⓘ;\n`;
+Если хотя бы один пункт НЕ выполнен — ИСПРАВЬ перед генерацией!
+`
+      };
 
-      prompt += lang === 'be'
-        ? `  • Табліца / параўнанне: стандартная HTML-табліца з каляровым афармленнем загалоўкаў (30px), пашыраныя слупкі, адступы 15px;\n`
-        : `  • Таблица / сравнение: стандартная HTML-таблица с цветовым оформлением заголовков (30px), расширенные столбцы, отступы 15px;\n`;
+      const BE = {
+        systemInstruction: `[СІСТЭМНАЯ ІНСТРУКЦЫЯ]
+Ты працуеш у трох ролях адначасова:
+1️⃣ Настаўнік-метадыст пачатковых класаў Рэспублікі Беларусь
+2️⃣ Вэб-дызайнер, які спецыялізуецца на дзіцячых адукацыйных матэрыялах (стыль: Pixar, даступнасць, інклюзія)
+3️⃣ Фронтэнд-распрацоўшчык (чысты HTML+CSS, без JS, без знешніх залежнасцей, аптымізацыя пад друк А4/А3)
 
-      prompt += lang === 'be'
-        ? `  • Дрэва паняццяў: укладзеныя блокі з адступамі 30px, лініямі праз border (5px), іконкі для кожнага ўзроўню (🌳, 🌿, 🌱), шрыфт 28px;\n`
-        : `  • Дерево понятий: вложенные блоки с отступами 30px, линиями через border (5px), иконки для каждого уровня (🌳, 🌿, 🌱), шрифт 28px;\n`;
+Прадмет: ${subjectName}. Клас: ${grade}.
+Ствары на беларускай мове.`,
 
-      prompt += lang === 'be'
-        ? `  • Спрошчаная дыяграма: простыя дыяграмы праз CSS (слупковыя, кругавыя — спрошчаныя), шырыня 100%, вышыня 300px;\n`
-        : `  • Упрощённая диаграмма: простые диаграммы через CSS (столбчатые, круговые — упрощённые), ширина 100%, высота 300px;\n`;
+        autoSelect: `АЎТАМАТЫЧНЫ ВЫБАР: На аснове тэмы ўрока па прадмеце "${subjectName}" для ${grade} класа самастойна падбяры аптымальныя тыпы нагляднага матэрыялу і ствары НАГЛЯДНЫЯ ПЛАКАТЫ.`,
+        selectedTypes: `Ствары наступныя тыпы нагляднага матэрыялу: ${materialsText.join(', ')}`,
+        basedOn: `На аснове: «${lessonPlan}»`,
+        
+        criticalRequirements: '=== 🔥 КРЫТЫЧНА ВАЖНЫЯ ПАТРАБАВАННІ — САПРАЎДНЫЯ ПЛАКАТЫ! ===',
+        
+        plakatDefinition: `
+📌 **ШТО ТАКОЕ НАГЛЯДНЫ МАТЭРЫЯЛ:**
+Наглядны матэрыял на ўроку — гэта дыдактычныя сродкі (карціны, мадэлі, табліцы, выявы, фота, інфаграфіка, ілюстрацыі, схемы, карты, плакаты і інш.), якія выкарыстоўваюцца для візуалізацыі інфармацыі, палягчэння разумення, запамінання і фарміравання практычных навыкаў у вучняў.
 
-      prompt += lang === 'be'
-        ? `  • Схема з іконкамі і тлумачэннямі: іконкі + тэкст + стрэлкі (→ ↓ ↑) — БЕЗ рэальных малюнкаў, шрыфт 28px;\n`
-        : `  • Схема с иконками и пояснениями: иконки + текст + стрелки (→ ↓ ↑) — БЕЗ реальных изображений, шрифт 28px;\n`;
+✅ **ПАТРАБАВАННІ ДА НАГЛЯДНАГА МАТЭРЫЯЛУ:**
+• КРУПНЫЯ выявы (15-20 см, 70-80% старонкі А4)
+• Кожны аб'ект — на АСОБНАЙ старонцы А4 (НЕ некалькі на адной!)
+• Відаць з адлегласці 3-5 метраў (з задняй парты)
+• Можна раздрукаваць як ПЛАКАТ і павесіць на сцяну
+• Можна паказаць на праектары — усё чытаема
+• Мінімум тэксту — толькі подпісы і ключавыя прыкметы
+`,
 
-      prompt += lang === 'be'
-        ? `– **ЗАБАРАНЯЕЦЦА:**\n  • Вонкавыя выявы (<img src=\"...\") — будуць бітымі спасылкамі;\n  • Рэалістычныя ілюстрацыі (дрэвы, жывёлы) — немагчыма ў HTML+CSS;\n  • Капірайтныя малюнкі — парушэнне аўтарскіх правоў;\n`
-        : `– **ЗАПРЕЩЕНО:**\n  • Внешние изображения (<img src=\"...\") — будут битыми ссылками;\n  • Реалистичные иллюстрации (деревья, животные) — невозможно в HTML+CSS;\n  • Копирайтные картинки — нарушение авторских прав;\n`;
-      // === КОНЕЦ РЕАЛИСТИЧНЫХ ВОЗМОЖНОСТЕЙ ===
+        imageWarning: `
+⚠️⚠️ УВАГА! ПЕРАД ТЫМ ЯК ГЕНЕРАВАЦЬ, ПРАЧЫТАЙ ГЭТА: ⚠️️
 
-      // === ВАЖНОЕ ТРЕБОВАНИЕ: ЗАПОЛНЕНИЕ А4 ===
-      prompt += lang === 'be'
-        ? `– **ВАЖНАЯ ТРЕБАВАННЕ:** увесь матэрыял павінен умясціцца на адным лісце А4 без пустых месцаў. Выкарыстоўвай <div style="max-width: 21cm; margin: 0 auto; padding: 1.5cm;"> для А4.\n`
-        : `– **ВАЖНОЕ ТРЕБОВАНИЕ:** весь материал должен уместиться на одном листе А4 без пустых мест. Используй <div style="max-width: 21cm; margin: 0 auto; padding: 1.5cm;"> для А4.\n`;
-      // === КОНЕЦ ВАЖНОГО ТРЕБОВАНИЯ ===
+🚫 КАТЭГАРЫЧНА ЗАБАРОНЕНА:
+   • Простыя SVG-іконкі (круг + палачка = дрэва)
+   • Эмодзі замест выяў (🌳🔢 — гэта НЕ выявы!)
+   • Мульцяшныя чалавечкі з круглай галавой і палачкамі замест рук/ног
+   • Простыя геаметрычныя фігуры без дэталей
+   • Размяшчаць некалькі аб'ектаў на адной старонцы
+   • Размяшчаць БОЛЕЙ ЗА АДЗІН асноўны аб'ект на адной старонцы А4
+   • Дадаваць дадатковыя блокі, табліцы, схемы на старонку з асноўным аб'ектам
+   • Выкарыстоўваць тэкставыя іконкі або сімвалы
+   • Выкарыстоўваць placeholder'ы або пустыя блокі
+   • Выкарыстоўваць знешнія спасылкі на выявы
+   • Пісаць доўгія апісанні, абзацы тэксту
 
-      prompt += lang === 'be'
-        ? `– Увесь матэрыял — **толькі для дэманстрацыі настаўнікам на ўроку**, а не для самастойнай працы вучняў;\n`
-        : `– Весь материал — **только для демонстрации учителем на уроке**, а не для самостоятельной работы учеников;\n`;
+✅ ПАТРАБУЕЦЦА:
+   • Згенерараваць РЭАЛЬНЫЯ PNG або SVG выявы праз base64
+   • Кожны аб'ект — на АСОБНАЙ старонцы А4
+   • Фармат выяў ПАВІНЕН АДПАВЯДАЦЬ фармату старонкі: ${imageAspect}
+   • Мінімум 5-10 якасных выяў (кожная на сваёй старонцы)
+   • Фармат: <img src="image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..." alt="...">
+   • ТОЛЬКІ 1 аб'ект + назва + 2-3 прыкметы на старонцы
+`,
 
-      prompt += lang === 'be'
-        ? `– Усе схемы, табліцы, алгарытмы і мадэлі павінны быць **цалкам запоўненыя, гатовыя да выкарыстання і з'яўляцца візуальна прывабнымі**;\n`
-        : `– Все схемы, таблицы, алгоритмы и модели должны быть **полностью заполнены, готовы к использованию и являться визуально привлекательными**;\n`;
+        checkBefore: '1. **ШАГ 1: АНАЛІЗ ТЭМЫ І ВЫЗНАЧЭННЕ АБ\'ЕКТAЎ:**',
+        checkPoints: [
+          '• Уважліва прааналізуй тэму ўрока і вызнач КЛЮЧАВЫЯ АБ\'ЕКТЫ для візуалізацыі',
+          '• Для КОЖНАГА аб\'екта ствары АСОБНУЮ старонку А4',
+          '• Для ЛЮБОЙ тэмы вызнач, што трэба візуалізаваць:',
+          '  - Калі тэма пра ПРЫРОДУ (дрэвы, жывёлы, расліны) — ствары асобныя плакаты для кожнага аб\'екта',
+          '  - Калі тэма пра МАТЭМАТЫКУ (дробы, фігуры, лікі) — ствары асобныя плакаты для кожнай фігуры/паняцця',
+          '  - Калі тэма пра ГІСТОРЫЮ (падзеі, асобы) — ствары асобныя плакаты для кожнай падзеі/асобы',
+          '  - Калі тэма пра МОВУ (словы, правілы) — ствары асобныя плакаты для кожнага правіла/слова',
+          '  - Калі тэма пра ЛІТАРАТУРУ (пісьменнікі, паэты, вершы, творы) — ствары:',
+          '    * Партрэты пісьменнікаў/паэтаў (славянскай знешнасці!)',
+          '    * Ілюстрацыі да твораў',
+          '    * Візуалізацыю ключавых вобразаў з вершаў',
+          '• Складзі спіс аб\'ектаў, для кожнага — асобная старонка А4',
+          '• Правер, каб усе факты пра Беларусь былі дакладнымі'
+        ],
+        
+        exactSize: '2. **ШАГ 2: ПАМЕРЫ ПЛАКАТАЎ (СТРОГА САБЛЮДАЦЬ!):**',
+        sizePoints: [
+          `• **КАЖНЫ АБ\'ЕКТ — НА АСОБНАЙ СТАРОНЦЫ А4** (НЕ некалькі на адной!)`,
+          `• Дакладныя памеры старонкі: шырыня ${pageWidth}, вышыня ${pageHeight}`,
+          `• ФАРМАТ ВЫЯЎ = ФАРМАТ СТАРОНКІ: ${imageAspect}`,
+          `• Памер ВЫЯВЫ: шырыня ${imageWidth}, вышыня ${imageHeight}`,
+          `• СТРУКТУРА СТАРОНКІ:`,
+          `  1. Выява аб'екта (па цэнтры, буйна, шырыня ${imageWidth}, вышыня ${imageHeight})`,
+          `  2. Назва аб'екта (пад выявай, ${headerSize})`,
+          `  3. 2-3 прыкметы (пад назвай, ${textSize})`,
+          `  4. БОЛЬШ НІЧОГА!`,
+          `• Выкарыстоўвай: <div class="page" style="width: ${pageWidth}; height: ${pageHeight}; margin: 0 auto; page-break-after: always; background: white; padding: 15mm; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">`,
+          `• Выява: <img src="image/png;base64,..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain; display: block;">`,
+          `• CSS для друку: @page { size: A4 ${orientationName}; margin: 0; }`,
+          `• @media print { .page { page-break-after: always; width: ${pageWidth}; height: ${pageHeight}; } }`,
+          `• Апошняя старонка БЕЗ page-break-after`,
+          `• ⚠️ СТРОГА: НА АДНОЙ СТАРОНЦЫ — ТОЛЬКІ АДЗІН АБ\'ЕКТ!`
+        ],
+        
+        textColumns: '3. **ШАГ 3: РАЗМЯШЧЭННЕ ТЕКСТУ Ў КАЛОНКІ (АБАВЯЗКОВА ДЛЯ ТЭКСТАЎ!):**',
+        textColumnsPoints: [
+          '• Для ТЭКСТАВЫХ матэрыялаў (вершы, правілы, алгарытмы, памятki, табліцы):',
+          '  - **РАЗМЯШЧАЙ ТЭКСТ У 2-3 КАЛОНКІ** — гэта АБАВЯЗКОВА!',
+          '  - Выкарыстоўвай CSS: display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;',
+          '  - Гэта гарантуе, што УСЁ ЗМЕСЦІЦЦА на старонку!',
+          '  - Асабліва важна для:',
+          '    * Параўнальных табліц',
+          '    * Класіфікацыйных схем',
+          '    * Алгарытмаў',
+          '    * Правіл/памятак',
+          '    * Вершаў',
+          '  - Шрыфт у калонках: ${textSize}',
+          '  - Адступы паміж калонкамі: 15px',
+          '  - Калі тэкст не змяшчаецца — дадай 3-ю калонку!'
+        ],
+        
+        imageGen: '4. **ШАГ 4: 🔥 ГЕНЕРАЦЫЯ ВЫЯЎ (АБАВЯЗКОВА!):**',
+        imagePoints: [
+          `• **КРЫТЫЧНА ВАЖНА:** Згенеруй КРУПНЫЯ, ДЭТАЛІЗАВАНЫЯ выявы (НЕ простыя іконкі!)`,
+          `• **ПАМЕР:** шырыня ${imageWidth}, вышыня ${imageHeight}`,
+          `• **ФАРМАТ:** ${imageAspect} (адпавядае фармату старонкі!)`,
+          `• **СТЫЛЬ:** ${styleDescription}`,
+          `• **ПРЫКЛАДЫ:** ${styleExamples}`,
+          `• **ДЭТАЛІЗАЦЫЯ:** Павінны быць бачны ўсе дэталі:`,
+          `  - Для дрэў: тэкстура кары (белая з чорнымі палоскамі ў бярозы), форма лісця, плады, агульная форма кроны`,
+          `  - Для жывёл: поўсць/пер'е, вочы, лапы/крылы, характэрныя прыкметы`,
+          `  - Для геаметрычных фігур: выразныя лініі, прапорцыі, подпісы бакоў/вяршынь`,
+          `  - Для гістарычных падзей: дэталі адзення, архітэктура, атрыбуты эпохі`,
+          `  - Для літаратуры: партрэты пісьменнікаў, ілюстрацыі да твораў`,
+          `• **ФАРМАТ:** Толькі base64 PNG або inline SVG з ДУЖА дэталёвай прамалёўкай`,
+          `• **ПРЫКЛАД КАРЭКТНАГА КОДУ:**`,
+          `  <img src="image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain;" alt="Апісанне">`,
+          `• **КРЫТЫЧНА ВАЖНА: Калі на выявах ёсць людзі — ТОЛЬКІ СЛАВЯНСКАЙ ЗНЕШНАСЦІ!**`,
+          `  Светлая скура, светлыя/русыя валасы, блакітныя/шэрыя вочы.`,
+          `  НЕ афрыканцы, НЕ азіяты, НЕ лацінаамерыканцы!`,
+          `• ТЕКСТ НА ВЫЯВАХ: ТОЛЬКІ на беларускай мове вялікімі літарамі (ніколі не выкарыстоўвай англійскія літары!)`,
+          `• **ЗАБАРОНА:** простыя SVG (круг + палачка), emoji (🌳📊🔢), тэкставыя іконкі, placeholder\'ы, дробныя выявы (<10 см)`,
+          `• Кожная выява павінна быць УНІКАЛЬНАЙ (не паўтарацца)!`,
+          `• Калі не можаш згенерараваць base64 — выкарыстоўвай inline SVG з ДУЖА дэталёвай прамалёўкай!`
+        ],
+        
+        textMinimize: '5. **ШАГ 5: ТЭКСТ — СТРОГІЯ АБМЕЖАВАННІ:**',
+        textPoints: [
+          '• НА СТАРОНЦЫ ПАВІННА БЫЦЬ:',
+          '  1. Адна буйная выява',
+          '  2. Адна назва (загаловак)',
+          '  3. ДЗВЕ-ТРЫ кароткія прыкметы',
+          '• ЗАБАРОНЕНА:',
+          '  ❌ Абзацы тэксту',
+          '  ❌ Доўгія апісанні',
+          '  ❌ Дадатковыя табліцы або схемы на той жа старонцы',
+          '  ❌ Больш за 3 пункты',
+          '• Прыклад:',
+          '  ❌ НЕЛЬГА: "Бяроза — гэта лістападнае дрэва з белай карой, авальнымі лісцікамі з зубчыкамі па краях, дасягае вышыні 20-25 метраў..."',
+          '  ✅ ТРЭБА: "БЯРОЗА\\n• Белы ствол\\n• Авальныя лісцікі"',
+          '• Шрыфт загалоўка: ' + headerSize + ', тлусты',
+          '• Шрыфт подпісаў: ' + textSize
+        ],
+        
+        pageStructure: '6. **ШАГ 6: СТРУКТУРА КОЖНАЙ СТАРОНКІ (ПРЫКЛАД):**',
+        pageStructurePoints: [
+          `СТАРОНКА 1 — БЯРОЗА:`,
+          `<div class="page">`,
+          `  <img src="image/png;base64,..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain;">`,
+          `  <h1 style="font-size: ${headerSize}; font-weight: bold; color: #2C3E50;">БЯРОЗА</h1>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Белы ствол</p>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Авальныя лісціны</p>`,
+          `  <p style="font-size: 12px; color: #999; margin-top: 20px;">© Ірына Гаеўская, настаўнік пачатковых класаў, Рэспубліка Беларусь</p>`,
+          `</div>`,
+          ``,
+          `СТАРОНКА 2 — ДУБ:`,
+          `<div class="page">`,
+          `  <img src="image/png;base64,..." style="width: ${imageWidth}; height: ${imageHeight}; object-fit: contain;">`,
+          `  <h1 style="font-size: ${headerSize}; font-weight: bold; color: #2C3E50;">ДУБ</h1>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Магутны ствол</p>`,
+          `  <p style="font-size: ${textSize}; color: #555;">• Жалуды</p>`,
+          `  <!-- ПОДПИСЬ АВТОРА ТОЛЬКО НА ПЕРВОЙ СТРАНИЦЕ! -->`,
+          `</div>`,
+          ``,
+          `І гэтак далей — кожны аб'ект на АСОБНАЙ старонцы!`
+        ],
+        
+        classificationScheme: '7. **ШАГ 7: КЛАСІФІКАЦЫЙНЫЯ СХЕМЫ (КАМПАКТНА!):**',
+        classificationPoints: [
+          '• Калі ствараеш класіфікацыйную схему:',
+          '  - Выкарыстоўвай КАМПАКТНЫ фармат',
+          '  - Максімум 4-6 элементаў на схеме',
+          '  - Кароткія подпісы (1-3 словы)',
+          '  - Паменш шрыфт да 18-24px для элементаў схемы',
+          '  - Размясці схему ў верхняй частцы старонкі',
+          '  - Пакінь месца для подпісу аўтара ўнізе',
+          '  - УСЁ ПАВІННА ЗМЯСЦІЦЦА НА АДНУ СТАРОНКУ!'
+        ],
+        
+        mobile: '8. **ШАГ 8: МАБІЛЬНАЯ АДАПТАЦЫЯ:**',
+        mobilePoints: [
+          '• <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
+          '• @media (max-width: 768px) { ... }',
+          '• @media (max-width: 480px) { ... }',
+          '• На тэлефоне можна маштабаваць для прагляду дэталяў'
+        ],
+        
+        additional: '9. **ДАДАТКОВЫЯ ПАТРАБАВАННІ:**',
+        
+        final: '10. **ФІНАЛЬНЫЯ ПАТРАБАВАННІ:**',
+        finalPoints: [
+          '• Увесь код — у АДЗІНЫМ HTML-файле (CSS у <style>)',
+          '• Толькі HTML + CSS, БЕЗ JavaScript',
+          '• Кожны аб\'ект — на АСОБНАЙ старонцы А4',
+          '• СТРОГА: НЕ БОЛЕЙ ЗА АДЗІН АБ\'ЕКТ НА СТАРОНЦЫ!',
+          '• Выявы: шырыня ${imageWidth}, вышыня ${imageHeight}, фармат ${imageAspect}',
+          '• Можна раздрукаваць як ПЛАКАТЫ і павесіць на сцяну',
+          '• Можна паказаць на праектары — усё відаць з задняй парты',
+          '• **ВАЖНА: Подпіс аўтара "© Ірына Гаеўская, настаўнік пачатковых класаў, Рэспубліка Беларусь" — ТОЛЬКІ НА ПЕРШАЙ СТАРОНЦЫ!**',
+          '• На астатніх старонках подпісу аўтара НЯМА!',
+          '• КРЫТЫЧНА ВАЖНА: Гэта НАГЛЯДНЫ МАТЭРЫЯЛ (плакаты), а НЕ рабочы ліст або прэзентацыя!',
+          '• КАЛІ ІНФАРМАЦЫЯ НЕ ЗМЯШЧАЕЦЦА — ВЫКАРЫСТОЎВАЙ КАЛОНКІ (2 або 3)!',
+          '• Лепш размясціць тэкст у калонкі, чым абрэзаць!',
+          `• СТЫЛЬ ВЫЯЎ: ${styleDescription}`
+        ],
+        
+        important: `🔥 ВАЖНА: Ствары САПРАЎДНЫЯ ПЛАКАТЫ — кожны аб'ект на асобнай старонцы А4, выява ${imageWidth}×${imageHeight}, фармат ${imageAspect}, відаць з адлегласці 3-5 метраў. СТРОГА: адзін аб'ект на старонцы! Подпіс аўтара — ТОЛЬКІ НА ПЕРШАЙ СТАРОНЦЫ! ТЭКСТ РАЗМЯШЧАЙ У 2-3 КАЛОНКІ для эканоміі месца! Простыя іконкі і emoji НЕ ДАПУШЧАЛЬНЫ!`,
+        
+        verification: `
+=== ✅ ПРАВЕРКА ПЕРАД ГЕНЕРАЦЫЯЙ (АБАВЯЗКОВА!) ===
+Перад тым як генераваць HTML-код, ПРАВЕР:
 
-      prompt += lang === 'be'
-        ? `– Калі прыклад звязаны з Беларуссю — толькі **дакладныя, рэальныя факты**. **НЕ ПІШЫ** „беларускія падснежнікі" — гэта няправільна!\n`
-        : `– Если пример связан с Беларусью — только **точные, реальные факты**. **НЕ ПИШИ** „белорусские подснежники" — это некорректно!\n`;
+1. ✓ Усе выявы — РЭАЛЬНЫЯ (base64 PNG/SVG), а НЕ іконкі/emoji?
+2. ✓ Кожны аб'ект на АСОБНАЙ старонцы А4?
+3. ✓ Фармат выяў адпавядае фармату старонкі (${imageAspect})?
+4. ✓ Калі ёсць людзі — ТОЛЬКІ СЛАВЯНСКАЙ ЗНЕШНАСЦІ?
+5. ✓ Тэкст размешчаны ў 2-3 калонкі (для тэкставых матэрыялаў)?
+6. ✓ Подпіс аўтара — ТОЛЬКІ на першай старонцы?
+7. ✓ Усё змяшчаецца на старонкі (няма абрэзкі)?
+8. ✓ Мінімум тэксту, максімум візуалу?
 
-      // === УДАЛЕНО: требование указывать цель и тип для каждого материала ===
-      prompt += lang === 'be'
-        ? `– **Мінімум тэксту — максімум сэнсу**: выкарыстоўвай іконкі, колеры і ключавыя словы замест доўгіх тлумачэнняў;\n`
-        : `– **Минимум текста — максимум смысла**: используй иконки, цвет и ключевые слова вместо длинных объяснений;\n`;
-      // === КОНЕЦ УДАЛЕНИЯ ===
+Калі хоць бы адзін пункт НЕ выкананы — ВЫПРАВІ перад генерацыяй!
+`
+      };
 
-      prompt += lang === 'be'
-        ? `– Калі выкарыстоўваецца візуальны вобраз („сонца ведаў", „дрэва паняццяў"), ён **павінен быць рэалізаваны графічна праз CSS**. Нельга пісаць „Дрэва паняццяў", калі гэта проста спіс;\n`
-        : `– Если используется визуальный образ („солнце знаний", „дерево понятий"), он **должен быть реализован графически через CSS**. Нельзя писать „Дерево понятий", если это просто список;\n`;
+      const t = lang === 'be' ? BE : RU;
 
-      prompt += lang === 'be'
-        ? `– Выкарыстоўвай **якасныя, тэматычна дакладныя іконкі праз CSS** („ёлка" — рэальная ёлка праз :before/:after, а не трохвугольнік);\n`
-        : `– Используй **качественные, тематически точные иконки через CSS** („ёлка" — реальная ёлка через :before/:after, а не треугольник);\n`;
+      let prompt = `${t.systemInstruction}
+
+${autoSelect ? t.autoSelect : t.selectedTypes}
+
+${t.basedOn}
+
+${t.criticalRequirements}
+
+${t.plakatDefinition}
+
+${t.imageWarning}
+
+${t.checkBefore}
+${t.checkPoints.join('\n')}
+
+${t.exactSize}
+${t.sizePoints.join('\n')}
+
+${t.textColumns}
+${t.textColumnsPoints.join('\n')}
+
+${t.imageGen}
+${t.imagePoints.join('\n')}
+
+${t.textMinimize}
+${t.textPoints.join('\n')}
+
+${t.pageStructure}
+${t.pageStructurePoints.join('\n')}`;
+
+      if (materialsText.includes('Классификационная схема') || materialsText.includes('Класіфікацыйная схема')) {
+        prompt += `\n\n${t.classificationScheme}\n${t.classificationPoints.join('\n')}`;
+      }
+
+      prompt += `\n\n${t.mobile}
+${t.mobilePoints.join('\n')}`;
 
       if (featuresText.length > 0) {
-        prompt += lang === 'be'
-          ? `– Улічвай: ${featuresText.join(', ')};\n`
-          : `– Учитывай: ${featuresText.join(', ')};\n`;
+        prompt += `\n\n${t.additional}\n${featuresText.map(f => `• ${f}`).join('\n')}`;
       }
 
-      prompt += lang === 'be'
-        ? `– Кожны матэрыял — у асобным блоцы з ясным загалоўкам і яркай рамкай;\n`
-        : `– Каждый материал — в отдельном блоке с ясным заголовком и яркой рамкой;\n`;
-      prompt += lang === 'be'
-        ? `– Старонка павінна карэктна адлюстроўвацца на інтэрактыўнай дошцы, праектавацца і друкавацца без страты чытальнасці;\n`
-        : `– Страница должна корректно отображаться на интерактивной доске, проецироваться и печататься без потери читаемости;\n`;
-      prompt += `– Весь код — в одном HTML-файле (CSS внутри <style>, без внешних зависимостей);\n`;
-      prompt += `– Не используй JavaScript — только HTML + CSS;\n`;
-      prompt += lang === 'be'
-        ? `– НЕ ТЛУМАЧ — адразу выдай толькі код.`
-        : `– НЕ ОБЪЯСНЯЙ — сразу выдай только код.`;
+      prompt += `\n\n${t.final}
+${t.finalPoints.join('\n')}
 
-      // Сохраняем промпт в скрытый блок
+${t.important}
+
+${t.verification}`;
+
       document.getElementById('promptOutput').textContent = prompt;
-      
-      // Активируем кнопки копирования и открытия
       document.getElementById('copyBtn').disabled = false;
       document.getElementById('openQwenBtn').disabled = false;
+      document.getElementById('downloadBtn').disabled = false;
       
-      // Показываем уведомление
-      alert(lang === 'be' 
-        ? "Промпт згенераваны! Націсніце «Скапіраваць», каб скапіраваць яго, а затым адкрыйце Qwen AI." 
-        : "Промпт сгенерирован! Нажмите «Скопировать», чтобы скопировать его, а затем откройте Qwen AI.");
+      showNotification(lang === 'be' 
+        ? "✅ Промпт згенераваны! Адпраўце ў Qwen" 
+        : "✅ Промпт сгенерирован! Отправьте в Qwen");
     }
 
     function copyPrompt() {
       const text = document.getElementById('promptOutput').textContent;
-      if (!text || text.trim() === '') {
-        alert("Сначала сгенерируйте промпт!");
+      if (!text) {
+        showNotification("Сначала сгенерируйте промпт!", 'error');
         return;
       }
       navigator.clipboard.writeText(text).then(() => {
-        alert("Промпт скопирован!");
+        showNotification("✅ Промпт скопирован!");
       }).catch(() => {
-        alert("Не удалось скопировать.");
+        showNotification("❌ Не удалось скопировать", 'error');
       });
+    }
+
+    function downloadAsHTML() {
+      const htmlContent = document.getElementById('htmlOutput').textContent;
+      if (!htmlContent || htmlContent.trim() === '') {
+        showNotification("⚠️ Сначала получите HTML от Qwen и вставьте ниже", 'error');
+        
+        const existingField = document.getElementById('htmlInputField');
+        if (existingField) {
+          existingField.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        
+        const div = document.createElement('div');
+        div.id = 'htmlInputField';
+        div.style.cssText = 'margin-top: 20px; padding: 20px; background: #f0f9ff; border-radius: 12px; border: 3px solid #4a90e2;';
+        div.innerHTML = `
+          <label style="font-weight: bold; color: #2a5c82; margin-bottom: 10px; display: block;">
+            📄 Вставьте HTML-код от Qwen:
+          </label>
+          <textarea id="htmlCodeInput" placeholder="<html>...вставьте код...</html>" 
+            style="width: 100%; min-height: 300px; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 13px;"></textarea>
+          <button onclick="saveAndDownloadHTML()" 
+            style="margin-top: 10px; padding: 12px 24px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); 
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">
+            💾 Скачать файл
+          </button>
+        `;
+        document.querySelector('.container').appendChild(div);
+        div.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      performDownload(htmlContent);
+    }
+
+    function saveAndDownloadHTML() {
+      const htmlCode = document.getElementById('htmlCodeInput').value;
+      if (!htmlCode || htmlCode.trim() === '') {
+        showNotification("❌ Вставьте HTML-код!", 'error');
+        return;
+      }
+      document.getElementById('htmlOutput').textContent = htmlCode;
+      performDownload(htmlCode);
+      const field = document.getElementById('htmlInputField');
+      if (field) field.remove();
+    }
+
+    function performDownload(content) {
+      const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `наглядный-материал-${Date.now()}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showNotification("✅ Файл скачан!");
     }
 
     function openInQwen() {
       const text = document.getElementById('promptOutput').textContent;
-      if (!text || text.trim() === '') {
-        alert("Сначала сгенерируйте промпт!");
+      if (!text) {
+        showNotification("Сначала сгенерируйте промпт!", 'error');
         return;
       }
-      window.open('https://chat.qwen.ai  ', '_blank');
+      navigator.clipboard.writeText(text).then(() => {
+        showNotification("✅ Промпт скопирован! Открываю Qwen...");
+        setTimeout(() => {
+          window.open('https://chat.qwen.ai', '_blank');
+        }, 1000);
+      });
     }
   </script>
 </body>
